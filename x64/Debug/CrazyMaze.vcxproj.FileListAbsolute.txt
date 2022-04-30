@@ -1,1 +1,2 @@
 C:\Users\User\OneDrive\02 Computer Science II\Capstone Project\Jordan McGuire - CapStone Project\CrazyMaze\x64\Debug\CrazyMaze.exe
+D:\C++\CrazyMaze\x64\Debug\CrazyMaze.exe

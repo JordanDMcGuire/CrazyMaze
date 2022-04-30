@@ -24,7 +24,9 @@ enemy enemy3(0, 0, 15, 100, "Crazy Dragon", '|');
 nonPlayer NPC1(0, 0, 1, 1, "Crazy Carl", '|', "", "", "", 0);
 nonPlayer NPC2(0, 0, 1, 1, "Crazy Brandon", '|', "", "", "", 0);
 nonPlayer NPC3(0, 0, 1, 1, "Crazy Steve", '|', "", "", "", 0);
-playMap map;
+playMap map1;
+playMap map2;
+playMap map3;
 string currentMap = "1";
 string direction = "";
 bool inputRecieved = false;
@@ -32,7 +34,7 @@ bool moveFinished = false;
 bool playing = true;
 
 // Special behaviors for ladders, nonplayers, items
-void special() {
+void special(playMap& map) {
 
     // Break up location data
     string typeRef = map.specialLocations[player1.getYPosition()][player1.getXPosition()].substr(0, 1);
@@ -309,7 +311,7 @@ void special() {
 
 }
 
-void move() {
+void move(playMap& map) {
 
     direction = "";
     inputRecieved = false;
@@ -391,7 +393,7 @@ void move() {
             }
 
             if (direction == "Climb" || direction == "climb" || direction == "c" || direction == "C") {
-                special();
+                special(map);
             }
 
             // End Move Sequence
@@ -468,7 +470,7 @@ void move() {
             }
 
             if (direction == "Climb" || direction == "climb" || direction == "c" || direction == "C") {
-                special();
+                special(map);
             }
 
             // End Move Sequence
@@ -557,7 +559,7 @@ void move() {
             }
 
             if (direction == "Speak" || direction == "speak" || direction == "s" || direction == "S") {
-                special();
+                special(map);
             }
 
             // End Move Sequence
@@ -599,7 +601,7 @@ void move() {
         }
 
         if (direction == "Speak" || direction == "speak" || direction == "s" || direction == "S") {
-            special();
+            special(map);
         }
 
         // End Move Sequence
@@ -613,7 +615,7 @@ void move() {
         cout << "There is a vicious enemy nearby! Prepare for battle!" << endl;
         this_thread::sleep_for(chrono::seconds(2));
 
-        special();
+        special(map);
 
         // End Move Sequence
         moveFinished = true;
@@ -626,7 +628,7 @@ void move() {
         cout << "You found something in a dark corner of the room..." << endl;
         this_thread::sleep_for(chrono::seconds(2));
 
-        special();
+        special(map);
 
         // End Move Sequence
         moveFinished = true;
@@ -643,10 +645,6 @@ void move() {
 
         cout << "The level is complete!!" << endl;
         this_thread::sleep_for(chrono::seconds(2));
-        cout << "Level 2 and 3 Coming Soon!!" << endl;
-        this_thread::sleep_for(chrono::seconds(2));
-        cout << "Thank You For Playing!!" << endl;
-        this_thread::sleep_for(chrono::seconds(4));
         playing = false;
 
         // End Move Sequence
@@ -656,57 +654,90 @@ void move() {
 
 }
 
-int main()
-{
-    cout << "You are walking home and you decide to take a shortcut down a dark alley." << endl;
-    this_thread::sleep_for(chrono::seconds(4));
-    cout << "Suddenly, the ground cracks beneath you and you begin to fall in complete darkness." << endl;
-    this_thread::sleep_for(chrono::seconds(4));
-    cout << "You brace yourself for pain, but instead you fall into a deep sleep." << endl;
-    this_thread::sleep_for(chrono::seconds(4));
-    cout << "..." << endl;
-    this_thread::sleep_for(chrono::seconds(4));
-    cout << "You wake up feeling hungry in a small dark room. In the distance, you can make out a ladder." << endl;
-    this_thread::sleep_for(chrono::seconds(4));
-    cout << "You can move and perform actions by typing the action, or the letter it starts with, in the console." << endl;
-    this_thread::sleep_for(chrono::seconds(4));
-    cout << "Welcome to Crazy Maze." << endl;
-    this_thread::sleep_for(chrono::seconds(4));
-    
-    map.mapPositions(1, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3, item1, item2, item3);
-    map.buildMap(currentMap, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3, item1, item2, item3);
+void level1() {
 
-    cout << map.printMap(player1) << endl;
+    map1.mapPositions(1, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3, item1, item2, item3);
+    map1.buildMap(currentMap, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3, item1, item2, item3);
+
+    cout << map1.printMap(player1) << endl;
 
     // level 1 loop
     while (playing) {
-        move();
+        move(map1);
     }
 
-    // Under construction 🚫
-    /*
-    
-    playing = true;
-    map.mapPositions(2, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3);
+}
+
+void level2() {
+
     currentMap = "2";
-    map.buildMap(currentMap, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3);
+    map2.mapPositions(2, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3, item1, item2, item3);
+    map2.buildMap(currentMap, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3, item1, item2, item3);
+
+    cout << map2.printMap(player1) << endl;
 
     // level 2 loop
     while (playing) {
-        move();
+        move(map2);
     }
 
-    playing = true;
-    map.mapPositions(3, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3);
+}
+
+void level3() {
+
     currentMap = "3";
-    map.buildMap(currentMap, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3);
+    map3.mapPositions(3, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3, item1, item2, item3);
+    map3.buildMap(currentMap, player1, enemy1, enemy2, enemy3, NPC1, NPC2, NPC3, item1, item2, item3);
+
+    cout << map3.printMap(player1) << endl;
 
     // level 3 loop
     while (playing) {
-        move();
+        move(map3);
     }
 
-    */
+}
+
+int main()
+{
+    
+    cout << "You are walking home and you decide to take a shortcut down a dark alley." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "Suddenly, the ground cracks beneath you and you begin to fall in complete darkness." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "You brace yourself for pain, but instead you fall into a deep sleep." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "..." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "You wake up feeling hungry in a small dark room. In the distance, you can make out a ladder." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "You can move and perform actions by typing the action, or the letter it starts with, in the console." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "Welcome to Crazy Maze." << endl;
+    this_thread::sleep_for(chrono::seconds(3)); 
+    
+    level1();
+    
+    playing = true; 
+    level2();
+    
+    playing = true; 
+    level3();
+
+    cout << "You emerge victorious from the dark maze!" << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "As you look at your reflection in a nearby shop window..." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "You notice that all of your items are gone and you are now in your regular clothes." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "..." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "You make your way home trying to remember what happened so that you can tell someone... anyone..." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "Before long, the memory fades and becomes more like a dream..." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "But you know that no matter how distant the memory becomes, you will always remember Crazy Maze." << endl;
+    this_thread::sleep_for(chrono::seconds(3));
 
 }
 
