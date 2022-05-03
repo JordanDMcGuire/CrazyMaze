@@ -201,7 +201,7 @@ void special(playMap& map) {
                     this_thread::sleep_for(chrono::seconds(2));
                     cout << "You feel a rush of energy! You are once again ready for battle!" << endl;
                     this_thread::sleep_for(chrono::seconds(2));
-                    player1.setHealth(200);
+                    player1.setHealth(100);
 
                     return;
                 }

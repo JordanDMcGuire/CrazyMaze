@@ -1,5 +1,2 @@
-﻿  CrazyMaze.cpp
-D:\C++\CrazyMaze\CrazyMaze.cpp(150,27): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\C++\CrazyMaze\CrazyMaze.cpp(231,27): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\C++\CrazyMaze\CrazyMaze.cpp(271,27): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  playMap.cpp
   CrazyMaze.vcxproj -> D:\C++\CrazyMaze\x64\Debug\CrazyMaze.exe
