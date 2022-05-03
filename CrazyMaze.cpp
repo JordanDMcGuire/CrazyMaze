@@ -166,8 +166,49 @@ void special(playMap& map) {
             }
 
             if (player1.getHealth() <= 0) {
+
+                string again;
+                bool inputRecieved = false;
+
                 cout << "You were defeated in battle!" << endl;
-                playing = false;
+                cout << "Would you like to try again (yes/no)?" << endl;
+
+                do {
+                    try {
+
+                        cin >> again;
+
+                        if (again == "yes" || again == "YES" || again == "y" || again == "Yes" ||
+                            again == "no" || again == "NO" || again == "n" || again == "No") {
+                            inputRecieved = true;
+                        }
+                        else {
+                            throw again;
+                        }
+
+                    }
+                    catch (string again) {
+                        cout << "Incorrect input. Please type yes or no:" << endl;
+                    }
+
+                } while (!inputRecieved);
+
+                if (again == "yes" || again == "YES" || again == "y" || again == "Yes") {
+
+                    cout << "A glowing creature appears in your line of sight just before things go black" << endl;
+                    this_thread::sleep_for(chrono::seconds(2));
+                    cout << "\"This is not the end of your adventure,\" the creature says." << endl;
+                    this_thread::sleep_for(chrono::seconds(2));
+                    cout << "You feel a rush of energy! You are once again ready for battle!" << endl;
+                    this_thread::sleep_for(chrono::seconds(2));
+                    player1.setHealth(200);
+
+                    return;
+                }
+                else if (again == "no" || again == "NO" || again == "n" || again == "No") {
+                    exit(0);
+                }
+
             }
             else {
                 cout << "You defeated the evil monster!" << endl;
