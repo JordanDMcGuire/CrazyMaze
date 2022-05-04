@@ -1,5 +1,13 @@
-﻿// CrazyMaze.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿/* 
+    Jordan McGuire
+    Professor Carroll
+    CS 161 C01
+    3 May 2022
+
+    Crazy Maze is a console based text driven adventure game that takes place over the 
+    course of three levels. In each level the player finds items, encounters strangers
+    and fights enemies. After each level is complete, the player wins the game. 
+*/
 
 #include <iostream>
 #include <sstream>
